@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import UserListViewScreen from './screens/UserListViewScreen'
+import BetListViewScreen from './screens/BetListViewScreen';
+import ContestListViewScreen from './screens/ContestListViewScreen';
+import TransactionListViewScreen from './screens/TransactionListViewScreen';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Router>
+      <Switch>
+        <Route exact path='/users' component={UserListViewScreen} />
+        <Route exact path='/bets' component={BetListViewScreen} />
+        <Route exact path='/contests' component={ContestListViewScreen} />
+        <Route exact path='/transactions' component={TransactionListViewScreen} />
 
-export default App;
+        {/* Default */}
+        <Route component={UserListViewScreen} />
+      </Switch>
+    </Router>
+  );
+};
+
+export default () => {
+  return (
+    <App />
+  );
+};
